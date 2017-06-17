@@ -1,5 +1,6 @@
 var calculator = {
   calculator: [],
+  result:'',
 
   addValues: function(values) {
     this.calculator.push(values);
@@ -11,7 +12,8 @@ var calculator = {
   },
   doMath: function() {
     var equation = this.calculator.join('');
-    console.log(eval(equation));
+    this.result = eval(equation);
+    console.log(this.result);
   },
   clearAll: function() {
     this.calculator.splice(0,this.calculator.length);
@@ -21,14 +23,12 @@ var calculator = {
 
 var handlers = {
   addValues: function(value) {
-    //var addValueInput = document.getElementById('test');
     calculator.addValues(value);
-    // addValueInput.value = '';
     view.displayMath();
   },
   equals: function() {
     calculator.doMath();
-    view.displayMath();
+    view.displayResult();
   },
   clear: function() {
     calculator.clearAll();
@@ -42,6 +42,14 @@ var view = {
     equation.innerHTML = '';
     var equationLi = document.createElement('li');
     equationLi.innerHTML = calculator.calculator.join('');
+    equation.appendChild(equationLi);
+  },
+
+  displayResult: function() {
+    var equation = document.querySelector('ul');
+    equation.innerHTML = '';
+    var equationLi = document.createElement('li');
+    equationLi.innerHTML = calculator.result;
     equation.appendChild(equationLi);
   }
 };
