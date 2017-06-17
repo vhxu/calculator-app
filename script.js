@@ -13,7 +13,7 @@ var calculator = {
     var equation = this.calculator.join('');
     console.log(eval(equation));
   },
-  clear: function() {
+  clearAll: function() {
     this.calculator.splice(0,this.calculator.length);
     console.log(this.calculator);
   }
@@ -24,11 +24,27 @@ var handlers = {
     //var addValueInput = document.getElementById('test');
     calculator.addValues(value);
     // addValueInput.value = '';
+    view.displayMath();
   },
   equals: function() {
     calculator.doMath();
+    view.displayMath();
+  },
+  clear: function() {
+    calculator.clearAll();
+    view.displayMath();
   }
-}
+};
+
+var view = {
+  displayMath: function() {
+    var equation = document.querySelector('ul');
+    equation.innerHTML = '';
+    var equationLi = document.createElement('li');
+    equationLi.innerHTML = calculator.calculator.join('');
+    equation.appendChild(equationLi);
+  }
+};
 
 //AC, +/-, %, /
 //7, 8, 9 , x
