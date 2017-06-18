@@ -5,10 +5,12 @@ var calculator = {
 
   addValues: function(values) {
     this.calculator.push(values);
-    if (this.calculator[this.calculator.length-1] === '+' || this.calculator[this.calculator.length-1] === '-' || this.calculator[this.calculator.length-1] === '*' || this.calculator[this.calculator.length-1] === '/') {
-      // for (var i=0; i < this.calculator.length-1; i++) {
-      //   this.equation1.push(this.calculator[i]);
+    if (this.calculator[0] == this.result && !isNaN(this.calculator[1])) {
+      this.equation.splice(0, 1);
+      this.equation.push(values);
+      this.calculator.splice(0, 1);
     } else if (this.calculator[this.calculator.length-2] === '+' || this.calculator[this.calculator.length-2] === '-' || this.calculator[this.calculator.length-2] === '*' || this.calculator[this.calculator.length-2] === '/') {
+      // if second to last value in array is an operator, make euqation array empty
       this.equation = [];
       this.equation.push(values);
     } else {
@@ -16,6 +18,10 @@ var calculator = {
     }
     console.log(this.calculator);
     console.log(this.equation);
+  },
+  addOperator: function(operator) {
+    this.calculator.push(operator);
+    console.log(this.calculator);
   },
   deleteValues: function() {
     this.calculator.splice(-1, 1);
@@ -50,6 +56,10 @@ var calculator = {
 var handlers = {
   addValues: function(value) {
     calculator.addValues(value);
+    view.displayMath();
+  },
+  addOperator: function(operator) {
+    calculator.addOperator(operator);
     view.displayMath();
   },
   equals: function() {
