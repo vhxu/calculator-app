@@ -1,10 +1,21 @@
 var calculator = {
+  equation: [],
   calculator: [],
   result:'',
 
   addValues: function(values) {
     this.calculator.push(values);
+    if (this.calculator[this.calculator.length-1] === '+' || this.calculator[this.calculator.length-1] === '-' || this.calculator[this.calculator.length-1] === '*' || this.calculator[this.calculator.length-1] === '/') {
+      // for (var i=0; i < this.calculator.length-1; i++) {
+      //   this.equation1.push(this.calculator[i]);
+    } else if (this.calculator[this.calculator.length-2] === '+' || this.calculator[this.calculator.length-2] === '-' || this.calculator[this.calculator.length-2] === '*' || this.calculator[this.calculator.length-2] === '/') {
+      this.equation = [];
+      this.equation.push(values);
+    } else {
+      this.equation.push(values);
+    }
     console.log(this.calculator);
+    console.log(this.equation);
   },
   deleteValues: function() {
     this.calculator.splice(-1, 1);
@@ -14,6 +25,7 @@ var calculator = {
     var equation = this.calculator.join('');
     this.result = eval(equation);
     this.calculator.splice(0,this.calculator.length,this.result.toString());
+    this.equation.splice(0,this.calculator.length,this.result.toString());
     console.log(this.result);
     console.log(this.calculator);
   },
@@ -28,6 +40,10 @@ var calculator = {
       this.calculator.unshift("-");
     }
     console.log(this.calculator);
+  },
+  percent: function() {
+
+
   }
 };
 
@@ -38,7 +54,7 @@ var handlers = {
   },
   equals: function() {
     calculator.doMath();
-    view.displayMath();
+    view.displayResults();
   },
   clear: function() {
     calculator.clearAll();
@@ -55,7 +71,14 @@ var view = {
     var equation = document.querySelector('ul');
     equation.innerHTML = '';
     var equationLi = document.createElement('li');
-    equationLi.innerHTML = calculator.calculator.join('');
+    equationLi.innerHTML = calculator.equation.join('');
+    equation.appendChild(equationLi);
+  },
+  displayResults: function() {
+    var equation = document.querySelector('ul');
+    equation.innerHTML = '';
+    var equationLi = document.createElement('li');
+    equationLi.innerHTML = calculator.result;
     equation.appendChild(equationLi);
   }
 };
