@@ -2,9 +2,14 @@ var calculator = {
   equation: [],
   calculator: [],
   result:'',
+  operatorLocation:'',
+  savedOperation:[],
 
   addValues: function(values) {
     this.calculator.push(values);
+    if (this.operatorLocation > 0) {
+      this.savedOperation.push(values);
+    }
     if (this.calculator[0] == this.result && !isNaN(this.calculator[1])) {
       this.equation.splice(0, 1);
       this.equation.push(values);
@@ -21,6 +26,10 @@ var calculator = {
   },
   addOperator: function(operator) {
     this.calculator.push(operator);
+    this.operatorLocation = 1;
+    this.savedOperation.push(operator);
+    console.log(this.operatorLocation);
+    console.log(this.savedOperation);
     console.log(this.calculator);
   },
   deleteValues: function() {
@@ -28,28 +37,48 @@ var calculator = {
     console.log(this.calculator);
   },
   doMath: function() {
-    var equation = this.calculator.join('');
-    this.result = eval(equation);
-    this.calculator.splice(0,this.calculator.length,this.result.toString());
-    this.equation.splice(0,this.calculator.length,this.result.toString());
+    if (this.calculator[0] == this.result) {
+      this.result = eval((this.calculator.concat(this.savedOperation)).join(''));
+      this.calculator.splice(0, 1, this.result.toString());
+      this.equation.splice(0, 1, this.result.toString());
+    } else {
+      this.result = eval(this.calculator.join(''));
+      this.calculator.splice(0,this.calculator.length,this.result.toString());
+      this.equation.splice(0,this.calculator.length,this.result.toString());
+    }
+
     console.log(this.result);
     console.log(this.calculator);
   },
   clearAll: function() {
+    this.equation.splice(0,this.equation.length);
     this.calculator.splice(0,this.calculator.length);
     console.log(this.calculator);
   },
   plusMinus: function() {
-    if (this.calculator[0] === "-") {
-      this.calculator.shift();
+    if (this.equation[0] === "-") {
+      this.calculator.splice(this.calculator.length-this.equation.length, 1);
+      this.equation.shift();
     } else {
-      this.calculator.unshift("-");
+      this.calculator.splice(this.calculator.length-this.equation.length, 0, '-');
+      this.equation.unshift('-');
     }
     console.log(this.calculator);
+    console.log(this.equation);
   },
   percent: function() {
-
-
+    if (this.equation.length > 0) {
+      var percentNumber = eval(this.equation.join('') + '/100');
+      var percentNumberString = percentNumber.toString();
+      this.calculator.splice(this.calculator.length-this.equation.length, this.equation.length);
+      this.equation = [];
+      for (var i = 0; i < percentNumberString.length; i++) {
+        this.equation.push(percentNumberString[i]);
+      }
+      this.calculator = this.calculator.concat(this.equation);
+      console.log(this.calculator);
+      console.log(this.equation);
+    }
   }
 };
 
@@ -72,6 +101,10 @@ var handlers = {
   },
   plusMinus: function() {
     calculator.plusMinus();
+    view.displayMath();
+  },
+  percent: function() {
+    calculator.percent();
     view.displayMath();
   }
 };
