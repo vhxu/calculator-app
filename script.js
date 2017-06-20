@@ -25,19 +25,28 @@ var calculator = {
     console.log(this.equation);
   },
   addOperator: function(operator) {
-    this.calculator.push(operator);
-    this.operatorLocation = 1;
-    this.savedOperation.push(operator);
+    this.savedOperation=[];
+    if (operator == this.calculator[this.calculator.length-1]) {
+
+    } else if (this.calculator[this.calculator.length-1] === '+' || this.calculator[this.calculator.length-1] === '-' || this.calculator[this.calculator.length-1] === '*' || this.calculator[this.calculator.length-1] === '/'){
+      this.calculator.splice(this.calculator.length-1, 1, operator);
+      this.savedOperation[0] = operator;
+    } else {
+      this.calculator.push(operator);
+      this.operatorLocation = 1;
+      this.savedOperation.push(operator);
+    }
     console.log(this.operatorLocation);
     console.log(this.savedOperation);
     console.log(this.calculator);
+    console.log(this.equation);
   },
   deleteValues: function() {
     this.calculator.splice(-1, 1);
     console.log(this.calculator);
   },
   doMath: function() {
-    if (this.calculator[0] == this.result) {
+    if (this.calculator[0] == this.result && this.calculator.length == 1) {
       this.result = eval((this.calculator.concat(this.savedOperation)).join(''));
       this.calculator.splice(0, 1, this.result.toString());
       this.equation.splice(0, 1, this.result.toString());
@@ -47,7 +56,9 @@ var calculator = {
       this.equation.splice(0,this.calculator.length,this.result.toString());
     }
 
+
     console.log(this.result);
+    console.log(this.equation);
     console.log(this.calculator);
   },
   clearAll: function() {
