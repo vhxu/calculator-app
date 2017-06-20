@@ -41,6 +41,14 @@ var calculator = {
     console.log(this.calculator);
     console.log(this.equation);
   },
+  addDecimal: function() {
+    if (this.equation.join('')%1 === 0 && this.equation[this.equation.length-1] != '.') {
+      this.equation.push('.');
+      this.calculator.push('.');
+    }
+    console.log(this.equation);
+    console.log(this.calculator);
+  },
   deleteValues: function() {
     this.calculator.splice(-1, 1);
     console.log(this.calculator);
@@ -100,6 +108,10 @@ var handlers = {
   },
   addOperator: function(operator) {
     calculator.addOperator(operator);
+    view.displayMath();
+  },
+  addDecimal: function() {
+    calculator.addDecimal();
     view.displayMath();
   },
   equals: function() {
