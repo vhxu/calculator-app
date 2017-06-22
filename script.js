@@ -42,7 +42,8 @@ var calculator = {
     console.log(this.equation);
   },
   addDecimal: function() {
-    if (this.equation.join('')%1 === 0 && this.equation[this.equation.length-1] != '.') {
+    var joinedEquation = this.equation.join('');
+    if (joinedEquation.split('.').length === 1 && this.equation[this.equation.length-1] != '.') {
       this.equation.push('.');
       this.calculator.push('.');
     }
