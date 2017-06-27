@@ -7,39 +7,43 @@
   </head>
 
   <body>
-    <ul>
+    <div class="container">
+      <div class="display">
+        <ul>
 
-    </ul>
+        </ul>
+      </div>
 
-    <div class = "container">
-      <div class = "row">
-        <div class = "button" onclick="handlers.clear()">AC</div>
-        <div onclick="handlers.plusMinus()">+/-</div>
-        <div onclick="handlers.percent()">%</div>
-        <div onclick="handlers.addOperator('/')">÷</div>
-      </div>
-      <div class = "row">
-        <div onclick="handlers.addValues(this.innerHTML)">7</div>
-        <div onclick="handlers.addValues(this.innerHTML)">8</div>
-        <div onclick="handlers.addValues(this.innerHTML)">9</div>
-        <div onclick="handlers.addOperator('*')">x</div>
-      </div>
-      <div class = "row">
-        <div onclick="handlers.addValues(this.innerHTML)">4</div>
-        <div onclick="handlers.addValues(this.innerHTML)">5</div>
-        <div onclick="handlers.addValues(this.innerHTML)">6</div>
-        <div onclick="handlers.addOperator(this.innerHTML)">-</div>
-      </div>
-      <div class = "row">
-        <div onclick="handlers.addValues(this.innerHTML)">1</div>
-        <div onclick="handlers.addValues(this.innerHTML)">2</div>
-        <div onclick="handlers.addValues(this.innerHTML)">3</div>
-        <div onclick="handlers.addOperator(this.innerHTML)">+</div>
-      </div>
-      <div class = "row">
-        <div onclick="handlers.addValues(this.innerHTML)">0</div>
-        <div onclick="handlers.addDecimal()">.</div>
-        <div onclick="handlers.equals()">=</div>
+      <div class = "buttons">
+        <div class = "row">
+          <div style="background-color:#dbd9d9" class = "button" onclick="handlers.clear()">AC</div>
+          <div style="background-color:#dbd9d9" onclick="handlers.plusMinus()">+/-</div>
+          <div style="background-color:#dbd9d9" onclick="handlers.percent()">%</div>
+          <div style="background-color:#ff7a1c; color: white;" onclick="handlers.addOperator('/')">÷</div>
+        </div>
+        <div class = "row">
+          <div onclick="handlers.addValues(this.innerHTML)">7</div>
+          <div onclick="handlers.addValues(this.innerHTML)">8</div>
+          <div onclick="handlers.addValues(this.innerHTML)">9</div>
+          <div style="background-color:#ff7a1c; color: white;" onclick="handlers.addOperator('*')">×</div>
+        </div>
+        <div class = "row">
+          <div onclick="handlers.addValues(this.innerHTML)">4</div>
+          <div onclick="handlers.addValues(this.innerHTML)">5</div>
+          <div onclick="handlers.addValues(this.innerHTML)">6</div>
+          <div style="background-color:#ff7a1c; color: white;" onclick="handlers.addOperator(this.innerHTML)">−</div>
+        </div>
+        <div class = "row">
+          <div onclick="handlers.addValues(this.innerHTML)">1</div>
+          <div onclick="handlers.addValues(this.innerHTML)">2</div>
+          <div onclick="handlers.addValues(this.innerHTML)">3</div>
+          <div style="background-color:#ff7a1c; color: white;" onclick="handlers.addOperator(this.innerHTML)">+</div>
+        </div>
+        <div class = "last">
+          <div class = "zero" onclick="handlers.addValues(this.innerHTML)">0</div>
+          <div class = "last-row" onclick="handlers.addDecimal()">.</div>
+          <div style="background-color:#ff7a1c; color: white;" class = "last-row" onclick="handlers.equals()">=</div>
+        </div>
       </div>
     </div>
 
