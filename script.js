@@ -131,6 +131,15 @@ var handlers = {
     calculator.percent();
     view.displayMath();
   }
+  // setEventListeners: function() {
+  //   var keyPad = document.querySelector('.buttons');
+  //   keyPad.addEventListener('click', function(event) {
+  //     if (event.target.className ==='button') {
+  //       console.log('hi');
+  //       var button = event.target.dataset.char;
+  //     }
+  //   });
+  // }
 };
 
 var view = {
@@ -149,6 +158,8 @@ var view = {
     equation.appendChild(equationLi);
   }
 };
+
+//handlers.setEventListeners();
 
 //AC, +/-, %, /
 //7, 8, 9 , x

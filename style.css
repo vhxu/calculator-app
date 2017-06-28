@@ -27,6 +27,8 @@ body {
   display: flex;
   flex-direction: column;
   flex: 71;
+  margin-left: 1px;
+  margin-right: 1px;
 }
 
 .row {
@@ -35,15 +37,27 @@ body {
   flex: 1;
 }
 
-.row div {
+.button {
   display: flex;
   flex: 1;
   justify-content: center;
   align-items: center;
-  border-style: solid;
-  border-color: black;
+  outline: 1px solid #50434D;
   background-color: #f2eded;
   font-size: 35px;
+  transition: background-color 0.4s;
+}
+
+.button:active {
+  background-color: #A3A1A1;
+}
+
+.button.top {
+  background-color: #dbd9d9;
+}
+
+.button.top:active {
+  background-color: #A3A1A1;
 }
 
 .last {
@@ -56,10 +70,17 @@ body {
   display: flex;
   align-items: center;
   flex: 2;
-  border-style: solid;
-  border-color: black;
   background-color: #f2eded;
   font-size: 35px;
+}
+
+.button.operator {
+  background-color:#ff7a1c;
+  color: white;"
+}
+
+.button.operator:active {
+  background-color: #DC6A19;
 }
 
 .last-row {
@@ -67,8 +88,6 @@ body {
   justify-content: center;
   align-items: center;
   flex: 1;
-  border-style: solid;
-  border-color: black;
   background-color: #f2eded;
   font-size: 35px;
 }
