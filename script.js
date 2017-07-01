@@ -144,18 +144,19 @@ var handlers = {
 
 var view = {
   displayMath: function() {
-    var equation = document.querySelector('ul');
+    // var equation = document.querySelector('ul');
+    // equation.innerHTML = '';
+    // var equationLi = document.createElement('li');
+    // equationLi.innerHTML = calculator.equation.join('');
+    // equation.appendChild(equationLi);
+    var equation = document.querySelector('.result');
     equation.innerHTML = '';
-    var equationLi = document.createElement('li');
-    equationLi.innerHTML = calculator.equation.join('');
-    equation.appendChild(equationLi);
+    equation.innerHTML = calculator.equation.join('');
   },
   displayResults: function() {
-    var equation = document.querySelector('ul');
+    var equation = document.querySelector('.result');
     equation.innerHTML = '';
-    var equationLi = document.createElement('li');
-    equationLi.innerHTML = calculator.result;
-    equation.appendChild(equationLi);
+    equation.innerHTML = calculator.result;
   }
 };
 
