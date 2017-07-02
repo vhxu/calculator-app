@@ -131,15 +131,38 @@ var handlers = {
     calculator.percent();
     view.displayMath();
   }
-  // setEventListeners: function() {
-  //   var keyPad = document.querySelector('.buttons');
-  //   keyPad.addEventListener('click', function(event) {
-  //     if (event.target.className ==='button') {
-  //       console.log('hi');
-  //       var button = event.target.dataset.char;
-  //     }
-  //   });
-  // }
+};
+
+var keys = [];
+window.addEventListener('keypress', myEventHandler);
+function myEventHandler(e) {
+  var keyCode = e.keyCode;
+  if (keyCode == 48 || keyCode == 96) {
+    handlers.addValues('0');
+  } else if (keyCode == 49 || keyCode == 97) {
+    handlers.addValues('1');
+    // handlers.addValues('1');
+  } else if (keyCode == 50 || keyCode == 98) {
+    handlers.addValues('2');
+  } else if (keyCode == 51 || keyCode == 99) {
+    handlers.addValues('3');
+  } else if (keyCode == 52 || keyCode == 100) {
+    handlers.addValues('4');
+  } else if (keyCode == 53 || keyCode == 101) {
+    handlers.addValues('5');
+  } else if (keyCode == 54 || keyCode == 102) {
+    handlers.addValues('6');
+  } else if (keyCode == 55 || keyCode == 103) {
+    handlers.addValues('7');
+  } else if (keyCode == 56 || keyCode == 104) {
+    handlers.addValues('8');
+  } else if (keyCode == 57 || keyCode == 105) {
+    handlers.addValues('9');
+  } else if (keyCode == 191 || keyCode == 111) {
+    handlers.addOperator('/');
+  } else if (keyCode == 56 && keyCode == 16 || keyCode == 106 || keyCode == 88) {
+    handlers.addOperator('*');
+  }
 };
 
 var view = {
@@ -159,8 +182,6 @@ var view = {
     equation.innerHTML = calculator.result;
   }
 };
-
-//handlers.setEventListeners();
 
 //AC, +/-, %, /
 //7, 8, 9 , x
