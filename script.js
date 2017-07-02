@@ -134,35 +134,52 @@ var handlers = {
 };
 
 var keys = [];
-window.addEventListener('keypress', myEventHandler);
+window.addEventListener('keydown', myEventHandler);
+
 function myEventHandler(e) {
-  var keyCode = e.keyCode;
-  if (keyCode == 48 || keyCode == 96) {
+  keys[e.keyCode] = true;
+  if (keys[48] || keys[96]) {
     handlers.addValues('0');
-  } else if (keyCode == 49 || keyCode == 97) {
+  } else if (keys[49] || keys[97]) {
     handlers.addValues('1');
-    // handlers.addValues('1');
-  } else if (keyCode == 50 || keyCode == 98) {
+  } else if (keys[50] || keys[98]) {
     handlers.addValues('2');
-  } else if (keyCode == 51 || keyCode == 99) {
+  } else if (keys[51] || keys[99]) {
     handlers.addValues('3');
-  } else if (keyCode == 52 || keyCode == 100) {
+  } else if (keys[52] || keys[100]) {
     handlers.addValues('4');
-  } else if (keyCode == 53 || keyCode == 101) {
+  } else if (keys[53] || keys[101]) {
     handlers.addValues('5');
-  } else if (keyCode == 54 || keyCode == 102) {
+  } else if (keys[54] || keys[102]) {
     handlers.addValues('6');
-  } else if (keyCode == 55 || keyCode == 103) {
+  } else if (keys[55] || keys[103]) {
     handlers.addValues('7');
-  } else if (keyCode == 56 || keyCode == 104) {
+  } else if (keys[56] || keys[104]) {
     handlers.addValues('8');
-  } else if (keyCode == 57 || keyCode == 105) {
+  } else if (keys[57] || keys[105]) {
     handlers.addValues('9');
-  } else if (keyCode == 191 || keyCode == 111) {
+  } else if (keys[190] || keys[110]) {
+    handlers.addDecimal('.');
+  } else if (keys[191] || keys[111]) {
     handlers.addOperator('/');
-  } else if (keyCode == 56 && keyCode == 16 || keyCode == 106 || keyCode == 88) {
+  } else if (keys[56] && keys[16] || keys[106] || keys[88]) {
     handlers.addOperator('*');
+  } else if (keys[189] || keys[109]) {
+    handlers.addOperator('-');
+  } else if (keys[187] && keys[16] || keys[107]) {
+    handlers.addOperator('+');
+  } else if (keys[187] || keys[13]) {
+    handlers.equals();
+  } else if (keys[8] || keys[46]) {
+    handlers.clear();
+  } else if (keys[53] && keys[16]) {
+    handlers.percent();
   }
+};
+
+window.addEventListener('keyup', keyReset)
+function keyReset(e) {
+  keys[e.keyCode] = false;
 };
 
 var view = {
