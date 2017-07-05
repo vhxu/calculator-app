@@ -118,6 +118,14 @@ var calculator = {
       console.log(this.calculator);
       console.log(this.equation);
     }
+  },
+  deleteOne: function() {
+    if (this.equation.length > 0) {
+      this.equation.splice(this.equation.length-1, 1);
+      this.calculator.splice(this.calculator.length-1, 1);
+      console.log(this.equation);
+      console.log(this.calculator);
+    }
   }
 };
 
@@ -140,7 +148,7 @@ var handlers = {
   },
   clear: function() {
     calculator.clearAll();
-    view.displayMath();
+    view.blankZero();
   },
   plusMinus: function() {
     calculator.plusMinus();
@@ -148,6 +156,10 @@ var handlers = {
   },
   percent: function() {
     calculator.percent();
+    view.displayMath();
+  },
+  deleteOne: function() {
+    calculator.deleteOne();
     view.displayMath();
   }
 };
@@ -216,6 +228,10 @@ var view = {
     var equation = document.querySelector('.result');
     equation.innerHTML = '';
     equation.innerHTML = calculator.result;
+  },
+  blankZero: function() {
+    var equation = document.querySelector('.result');
+    equation.innerHTML = 0;
   }
 };
 
