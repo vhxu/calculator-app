@@ -11,9 +11,12 @@ var calculator = {
       this.savedOperation.push(values);
     }
     if (this.calculator[0] == this.result && !isNaN(this.calculator[1])) {
+      // reseting calculator when value is hit afer doing a calculation
       this.equation.splice(0, 1);
       this.equation.push(values);
       this.calculator.splice(0, 1);
+    } else if (this.equation[0] === '-') {
+      this.equation.push(values);
     } else if (this.calculator[this.calculator.length-2] === '+' || this.calculator[this.calculator.length-2] === '-' || this.calculator[this.calculator.length-2] === '*' || this.calculator[this.calculator.length-2] === '/') {
       // if second to last value in array is an operator, make euqation array empty
       this.equation = [];
@@ -42,8 +45,16 @@ var calculator = {
     console.log(this.equation);
   },
   addDecimal: function() {
+    if (this.operatorLocation > 0 && this.equation[0] !== '.') {
+      this.savedOperation.push('.');
+      console.log(this.savedOperation);
+    }
     var joinedEquation = this.equation.join('');
-    if (joinedEquation.split('.').length === 1 && this.equation[this.equation.length-1] != '.') {
+    if (this.calculator[this.calculator.length-1] === '+' || this.calculator[this.calculator.length-1] === '-' || this.calculator[this.calculator.length-1] === '*' || this.calculator[this.calculator.length-1] === '/') {
+      this.equation = [];
+      this.equation.push('.');
+      this.calculator.push('.');
+    } else if (joinedEquation.split('.').length === 1 && this.equation[this.equation.length-1] != '.') {
       this.equation.push('.');
       this.calculator.push('.');
     }
@@ -76,7 +87,15 @@ var calculator = {
     console.log(this.calculator);
   },
   plusMinus: function() {
-    if (this.equation[0] === "-") {
+    if (this.operatorLocation > 0 && this.equation[0] !== '-') {
+      this.savedOperation.push('-');
+      console.log(this.savedOperation);
+    }
+    if (this.calculator[this.calculator.length-1] === '+' || this.calculator[this.calculator.length-1] === '-' || this.calculator[this.calculator.length-1] === '*' || this.calculator[this.calculator.length-1] === '/') {
+      this.equation = [];
+      this.equation.push('-');
+      this.calculator.splice(this.calculator.length, 0, '-');
+    } else if (this.equation[0] === "-") {
       this.calculator.splice(this.calculator.length-this.equation.length, 1);
       this.equation.shift();
     } else {
